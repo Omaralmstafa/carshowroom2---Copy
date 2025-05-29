@@ -6,7 +6,7 @@ class Car(models.Model):
     image = models.ImageField(upload_to='cars/')
     engine = models.CharField(max_length = 100)
     horsepower = models.CharField(max_length = 30)
-    topspeed = models.CharField(max_length = 30)
+    topSpeed = models.CharField(max_length = 30)
     acceleration = models.CharField(max_length = 30)
 
     def __str__(self):
