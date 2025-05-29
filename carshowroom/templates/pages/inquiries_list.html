@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الاستفسارات الواردة</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        .inquiry-item {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .inquiry-item:hover {
+            background: #f0f4ff;
+        }
+        .inquiry-details {
+            display: none;
+            margin-top: 0.7rem;
+            padding: 0.7rem 1rem;
+            background: #f7f7f7;
+            border-radius: 6px;
+            color: #333;
+        }
+        .inquiry-details.active {
+            display: block;
+        }
+        .inquiry-name {
+            font-weight: bold;
+            color: #1976d2;
+            font-size: 1.1em;
+        }
+        .message-block {
+            display: block;
+            white-space: pre-line;
+            word-break: break-all;
+            direction: rtl;
+            text-align: right;
+        }
+        .delete-inquiry-btn {
+            background: #d32f2f;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 0.4rem 1.2rem;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .delete-inquiry-btn:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>الاستفسارات الواردة</h1>
+        <a href="{% url 'home' %}" class="submit-btn back-btn">← العودة للمعرض</a>
+    </header>
+    <main style="max-width:700px;margin:2rem auto;">
+        {% for inquiry in inquiries %}
+            <div class="inquiry-item" onclick="toggleDetails(this)">
+                <div class="inquiry-name">{{ inquiry.customer_name }}</div>
+                <div class="inquiry-details">
+                    <div><strong>البريد الإلكتروني:</strong> {{ inquiry.customer_email }}</div>
+                    <div><strong>موديل السيارة:</strong> {{ inquiry.car_model }}</div>
+                    <div><strong>الرسالة:</strong>
+                        <span class="message-block">
+                            {{ inquiry.message }}
+                        </span>
+                    </div>
+                    <form action="{% url 'delete_inquiry' inquiry.id %}" method="post" style="margin-top:10px;" onClick="event.stopPropagation();">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-inquiry-btn" onclick="return confirm('هل أنت متأكد من حذف هذا الاستفسار؟')">حذف الاستفسار</button>
+                    </form>
+                </div>
+            </div>
+        {% empty %}
+            <div style="text-align:center;">لا توجد استفسارات بعد.</div>
+        {% endfor %}
+    </main>
+    <script>
+        function toggleDetails(item) {
+            var details = item.querySelector('.inquiry-details');
+            details.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

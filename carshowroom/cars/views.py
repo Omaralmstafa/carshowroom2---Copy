@@ -93,3 +93,20 @@ def car_add(request):
         )
         return redirect('home')
     return render(request, "pages/car_add.html")
+from .models import CarInquiry
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
+def inquiries_list(request):
+    inquiries = CarInquiry.objects.all().order_by('-id')
+    return render(request, "pages/inquiries_list.html", {"inquiries": inquiries})
+from django.shortcuts import get_object_or_404, redirect
+from .models import CarInquiry
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
+def delete_inquiry(request, inquiry_id):
+    inquiry = get_object_or_404(CarInquiry, id=inquiry_id)
+    if request.method == "POST":
+        inquiry.delete()
+    return redirect('inquiries_list')

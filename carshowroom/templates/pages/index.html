@@ -17,6 +17,7 @@
     {% if request.user.is_staff %}
     <div style="text-align:right; margin: 1rem;">
         <a href="{% url 'car_add' %}" class="submit-btn">➕ إضافة سيارة</a>
+        <a href="{% url 'inquiries_list' %}" class="submit-btn">📨 عرض الاستفسارات</a>
     </div>
     {% endif %}
 
