@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تعديل السيارة</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>تعديل السيارة</h1>
+        <a href="{% url 'car_detail' car.id %}" class="back-button">← العودة للتفاصيل</a>
+    </header>
+    <main>
+        <form method="post" enctype="multipart/form-data" class="car-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">اسم السيارة:</label>
+                <input type="text" name="name" id="name" value="{{ car.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">الوصف:</label>
+                <input type="text" name="description" id="description" value="{{ car.description }}" required>
+            </div>
+            <div class="form-group">
+                <label for="image">الصورة الحالية:</label>
+                <img src="{{ car.image.url }}" alt="{{ car.name }}" style="max-width:100px;">
+                <input type="file" name="image" id="image">
+            </div>
+            <div class="form-group">
+                <label for="engine">المحرك:</label>
+                <input type="text" name="engine" id="engine" value="{{ car.engine }}" required>
+            </div>
+            <div class="form-group">
+                <label for="horsepower">القوة الحصانية:</label>
+                <input type="text" name="horsepower" id="horsepower" value="{{ car.horsepower }}" required>
+            </div>
+            <div class="form-group">
+                <label for="topSpeed">السرعة القصوى:</label>
+                <input type="text" name="topSpeed" id="topSpeed" value="{{ car.topSpeed }}" required>
+            </div>
+            <div class="form-group">
+                <label for="acceleration">التسارع:</label>
+                <input type="text" name="acceleration" id="acceleration" value="{{ car.acceleration }}" required>
+            </div>
+            <button type="submit" class="submit-btn">حفظ التعديلات</button>
+        </form>
+    </main>
+    
+</body>
+</html>

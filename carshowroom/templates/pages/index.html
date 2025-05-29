@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض السيارات الفاخرة</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <button class="theme-toggle" id="themeToggle">🌙 الوضع الليلي</button>
+        <h1>معرض السيارات الفاخرة</h1>
+        <p class="intro">مرحباً بكم في مجموعتنا الحصرية من السيارات الفاخرة. اكتشف المزيج المثالي بين الأداء والفخامة والأناقة.</p>
+    </header>
+
+    {% if request.user.is_staff %}
+    <div style="text-align:right; margin: 1rem;">
+        <a href="{% url 'car_add' %}" class="submit-btn">➕ إضافة سيارة</a>
+    </div>
+    {% endif %}
+
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchBar" placeholder="ابحث عن السيارات حسب الماركة أو الموديل...">
+    </div>
+
+    <div class="loading" id="loading"></div>
+
+    <main class="car-grid">
+        {% for car in cars %}
+        <a href="{% url 'car_detail' car.id %}" class="car-card" data-car-id="{{ car.id }}">
+            <img src="{{ car.image.url }}" alt="Luxury car {{ car.name }} displayed in a well-lit showroom with polished floors and elegant surroundings, conveying a sense of sophistication and exclusivity">
+            <h2>{{ car.name }}</h2>
+            <p>{{ car.description }}</p>
+        </a>
+        {% endfor %}
+    </main>
+
+    <div class="inquiry-form">
+        <h3>استفسر عن سيارة</h3>
+        <form id="inquiryForm">
+            <div class="form-group">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="carModel">موديل السيارة المطلوب:</label>
+                <input type="text" id="carModel" required>
+            </div>
+            <div class="form-group">
+                <label for="message">رسالتك:</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">إرسال الاستفسار</button>
+        </form>
+    </div>
+
+    <button class="back-to-top" id="backToTop" title="العودة إلى الأعلى">↑</button>
+
+    <script src="{% static 'script.js' %}"></script>
+    {% load static %}
+<footer class="social-footer">
+    <span>تابعنا على:</span>
+    <a href="https://wa.me/+306973594500" target="_blank" title="واتساب">
+        <img src="{% static 'whatsapp.png' %}" alt="واتساب" class="social-icon">
+    </a>
+    <a href="https://www.instagram.com/o.m_a.h" target="_blank" title="انستجرام">
+        <img src="{% static 'instagram.png' %}" alt="انستجرام" class="social-icon">
+    </a>
+    <a href="https://twitter.com/O_m_h12" target="_blank" title="تويتر">
+        <img src="{% static 'twitter.png' %}" alt="تويتر" class="social-icon">
+    </a>
+    <a href="mailto:almstfyomar123456789@gmail.com" target="_blank" title="البريد الإلكتروني">
+        <img src="{% static 'email.png' %}" alt="البريد الإلكتروني" class="social-icon">
+    </a>
+</footer>
+
+</body>
+</html>
