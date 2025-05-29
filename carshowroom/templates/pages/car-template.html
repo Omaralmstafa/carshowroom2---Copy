@@ -6,6 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل السيارة - معرض السيارات الفاخرة</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        .car-details {
+            max-width: 600px;
+            margin: 2.5rem auto 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+        }
+        #carImage {
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            max-width: 80%;
+            max-height: 320px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            object-fit: cover;
+        }
+        .specs {
+            background: #f7f7f7;
+            border-radius: 8px;
+            padding: 1.2rem 1rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .specs h3 {
+            margin-bottom: 1rem;
+            color: #1976d2;
+            font-size: 1.15rem;
+            text-align: center;
+        }
+        .specs ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .specs li {
+            padding: 0.6rem 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1.07rem;
+            color: #333;
+        }
+        .specs li:last-child {
+            border-bottom: none;
+        }
+        .admin-actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,32 +66,31 @@
     </header>
 
     <main class="car-details">
-        <a href="{% url 'home' %}" class="back-button">← العودة للمعرض</a>
         <img src="{{ car.image.url }}" alt="صورة {{ car.name }}" id="carImage">
-        <h2 id="carName">{{ car.name }}</h2>
-        <p id="carDescription">{{ car.description }}</p>
+        <h2 id="carName" style="text-align:center;">{{ car.name }}</h2>
+        <p id="carDescription" style="text-align:center; color:#555;">{{ car.description }}</p>
         <div class="specs">
             <h3>المواصفات</h3>
             <ul>
-                <li id="engine">المحرك: {{ car.engine }}</li>
-                <li id="horsepower">القوة الحصانية: {{ car.horsepower }}</li>
-                <li id="topSpeed">السرعة القصوى: {{ car.top_speed }}</li>
-                <li id="acceleration">التسارع من 0 إلى 100 كم/س: {{ car.acceleration }}</li>
+                <li id="engine"><strong>المحرك:</strong> {{ car.engine }}</li>
+                <li id="horsepower"><strong>القوة الحصانية:</strong> {{ car.horsepower }}</li>
+                <li id="topSpeed"><strong>السرعة القصوى:</strong> {{ car.topSpeed }}</li>
+                <li id="acceleration"><strong>التسارع من 0 إلى 100 كم/س:</strong> {{ car.acceleration }}</li>
             </ul>
         </div>
-        {% if request.user.is_staff %}
         <div class="admin-actions">
-            <a href="{% url 'car_edit' car.id %}" class="edit-btn">تعديل</a>
-            <form action="{% url 'car_delete' car.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="delete-btn" onclick="return confirm('هل أنت متأكد من الحذف؟')">حذف</button>
-            </form>
+            <a href="{% url 'home' %}" class="submit-btn back-btn">← العودة للمعرض</a>
+            {% if request.user.is_staff %}
+                <a href="{% url 'car_edit' car.id %}" class="submit-btn edit-btn" style="min-width: 90px; text-align: center;">تعديل</a>
+                <form action="{% url 'car_delete' car.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="submit-btn delete-btn" style="min-width: 90px; text-align: center;" onclick="return confirm('هل أنت متأكد من الحذف؟')">حذف</button>
+                </form>
+            {% endif %}
         </div>
-        {% endif %}
     </main>
 
     <script src="{% static 'script.js' %}"></script>
- {% load static %}
 <footer class="social-footer">
     <span>تابعنا على:</span>
     <a href="https://wa.me/رقم_الواتساب" target="_blank" title="واتساب">
@@ -55,6 +106,5 @@
         <img src="{% static 'email.png' %}" alt="البريد الإلكتروني" class="social-icon">
     </a>
 </footer>
-
 </body>
 </html>

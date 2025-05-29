@@ -1,284 +1,321 @@
-/* Reset and base styles */
+/* ========== إعادة ضبط القيم الافتراضية وتحديد الأساسيات ========== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ========== تعريف الألوان الأساسية كمتغيرات CSS ========== */
 :root {
-    --bg-color: #f5f5f5;
-    --text-color: #333;
-    --header-bg: #1a1a1a;
-    --header-text: #ffffff;
-    --card-bg: #ffffff;
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --header-bg: #1a1a1a;
+  --header-text: #ffffff;
+  --card-bg: #ffffff;
+  --subtext-color: #666;
 }
 
+/* ========== ألوان الوضع الداكن (Dark Mode) ========== */
 .dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: #f5f5f5;
-    --header-bg: #000000;
-    --header-text: #ffffff;
-    --card-bg: #333;
+  --bg-color: #1a1a1a;
+  --text-color: #f5f5f5;
+  --header-bg: #000000;
+  --header-text: #ffffff;
+  --card-bg: #333;
+  --subtext-color: #aaa;
 }
 
+/* ========== تنسيقات الجسم الرئيسي للصفحة ========== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    transition: background-color 0.3s, color 0.3s;
-    direction: rtl;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s, color 0.3s;
+  direction: rtl;
 }
 
-/* Header styles */
+/* ========== تصميم الهيدر العلوي ========== */
 header {
-    background-color: var(--header-bg);
-    color: var(--header-text);
-    padding: 2rem;
-    text-align: center;
-    position: relative;
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
 }
 
+/* ========== تنسيق عنوان الموقع داخل الهيدر ========== */
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
+/* ========== وصف تمهيدي تحت العنوان ========== */
 .intro {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
 }
 
-/* Theme Toggle */
+/* ========== زر تبديل الوضع الليلي والفاتح ========== */
 .theme-toggle {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    padding: 0.5rem 1rem;
-    background: var(--card-bg);
-    color: var(--text-color);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Search Bar */
+/* ========== حاوية شريط البحث ========== */
 .search-container {
-    margin: 1rem auto;
-    max-width: 600px;
-    padding: 0 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  padding: 0 1rem;
 }
 
+/* ========== تصميم حقل البحث ========== */
 .search-bar {
-    width: 100%;
-    padding: 0.8rem;
-    border: 2px solid var(--header-bg);
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: var(--card-bg);
-    color: var(--text-color);
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--header-bg);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
 }
 
-/* Loading Animation */
+/* ========== عنصر يظهر أثناء التحميل ========== */
 .loading {
-    display: none;
-    text-align: center;
-    padding: 2rem;
+  display: none;
+  text-align: center;
+  padding: 2rem;
 }
 
-.loading::after {
-    content: "جاري التحميل...";
-    animation: dots 1.5s infinite;
-}
-
-@keyframes dots {
-    0%, 20% { content: "جاري التحميل."; }
-    40% { content: "جاري التحميل.."; }
-    60% { content: "جاري التحميل..."; }
-    80%, 100% { content: "جاري التحميل...."; }
-}
-
-/* Car grid layout */
+/* ========== شبكة عرض بطاقات السيارات ========== */
 .car-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Car card styles */
+/* ========== تصميم بطاقة السيارة ========== */
 .car-card {
-    background: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    cursor: pointer;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
+/* ========== تأثير التحويم على البطاقة ========== */
 .car-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
+/* ========== تنسيق صورة السيارة داخل البطاقة ========== */
 .car-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+  background: #f3f3f3;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+/* ========== تكبير الصورة عند التحويم ========== */
 .car-card:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
+/* ========== عنوان السيارة داخل البطاقة ========== */
 .car-card h2 {
-    padding: 1rem;
-    font-size: 1.2rem;
-    color: var(--text-color);
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
 }
 
+/* ========== وصف مختصر داخل البطاقة ========== */
 .car-card p {
-    padding: 0 1rem 1rem;
-    color: #666;
+  padding: 0 1rem 1rem;
+  color: var(--subtext-color);
 }
 
-/* Back to Top Button */
+/* ========== زر الرجوع إلى أعلى الصفحة ========== */
 .back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    background: var(--header-bg);
-    color: var(--header-text);
-    padding: 1rem;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* ========== تأثير التحويم على زر العودة للأعلى ========== */
 .back-to-top:hover {
-    background: #333;
+  background: #333;
 }
 
-/* Inquiry Form */
+/* ========== نموذج إرسال استفسار (فورم التواصل) ========== */
 .inquiry-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* ========== عنوان النموذج ========== */
 .inquiry-form h3 {
-    margin-bottom: 1rem;
-    color: var(--text-color);
+  margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
+/* ========== مجموعة إدخال داخل الفورم ========== */
 .form-group {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
+/* ========== تسمية الحقول ========== */
 .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
+/* ========== مدخلات النصوص والملاحظات ========== */
 .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
+/* ========== تخصيص حقل الملاحظات ========== */
 .form-group textarea {
-    height: 100px;
-    resize: vertical;
+  height: 100px;
+  resize: vertical;
 }
 
+/* ========== زر إرسال النموذج ========== */
 .submit-btn {
-    background: var(--header-bg);
-    color: var(--header-text);
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
+/* ========== تأثير التحويم على زر الإرسال ========== */
 .submit-btn:hover {
-    background: #333;
+  background: #333;
 }
 
-/* Responsive adjustments */
+/* ========== التعديلات على التصميم عند شاشات صغيرة ========== */
 @media (max-width: 768px) {
-    header {
-        padding: 1rem;
-    }
-    
-    .theme-toggle {
-        top: 0.5rem;
-        left: 0.5rem;
-    }
-    
-    .car-grid {
-        padding: 1rem;
-        gap: 1rem;
-    }
-    
-    .inquiry-form {
-        margin: 1rem;
-        padding: 1rem;
-    }
+  header {
+    padding: 1rem;
+  }
+
+  .theme-toggle {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .car-grid {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .inquiry-form {
+    margin: 1rem;
+    padding: 1rem;
+  }
 }
 
+/* ========== الفوتر الخاص بوسائل التواصل الاجتماعي ========== */
 .social-footer {
-    text-align: center;
-    margin: 2.5rem 0 1.5rem 0;
-    font-size: 1.15rem;
-    color: var(--text-color);
-    background: var(--card-bg);
-    border-radius: 16px 16px 0 0;
-    box-shadow: 0 -2px 8px rgba(0,0,0,0.07);
-    padding: 1.2rem 0 0.7rem 0;
-    letter-spacing: 1px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7rem;
+  text-align: center;
+  margin: 2.5rem 0 1.5rem 0;
+  font-size: 1.15rem;
+  color: var(--text-color);
+  background: var(--card-bg);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.07);
+  padding: 1.2rem 0 0.7rem 0;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
 }
 
+/* ========== نص الفوتر ========== */
 .social-footer span {
-    font-weight: bold;
-    margin-left: 10px;
-    color: var(--header-bg);
-    font-size: 1.1em;
+  font-weight: bold;
+  margin-left: 10px;
+  color: var(--header-bg);
+  font-size: 1.1em;
 }
 
+/* ========== أيقونات التواصل الاجتماعي ========== */
 .social-footer .social-icon {
-    width: 38px;
-    height: 38px;
-    margin: 0 6px;
-    border-radius: 50%;
-    background: #f3f3f3;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    padding: 5px;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    border: 1.5px solid #e0e0e0;
-    object-fit: contain;
+  width: 38px;
+  height: 38px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background: #f3f3f3;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  padding: 5px;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  border: 1.5px solid #e0e0e0;
+  object-fit: contain;
 }
 
+/* ========== تأثير التحويم على الأيقونات ========== */
 .social-footer .social-icon:hover {
-    transform: scale(1.18) rotate(-7deg);
-    background: #e0e0e0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.13);
-    border-color: var(--header-bg);
+  transform: scale(1.18) rotate(-7deg);
+  background: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.13);
+  border-color: var(--header-bg);
+}
+
+/* ========== أزرار التعديل والحذف والعودة ========== */
+.back-btn {
+  background: #888;
+  margin-left: 8px;
+}
+
+.edit-btn {
+  background: #1976d2;
+  margin-left: 8px;
+}
+
+.delete-btn {
+  background: #d32f2f;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.delete-btn:hover {
+  background: #b71c1c;
 }
