@@ -29,7 +29,11 @@
     <main class="car-grid">
         {% for car in cars %}
         <a href="{% url 'car_detail' car.id %}" class="car-card" data-car-id="{{ car.id }}">
-            <img src="{{ car.image.url }}" alt="Luxury car {{ car.name }} displayed in a well-lit showroom with polished floors and elegant surroundings, conveying a sense of sophistication and exclusivity">
+            {% if car.image and car.image.url %}
+                <img src="{{ car.image.url }}" alt="{{ car.name }}">
+            {% else %}
+                <img src="{% static car.image %}" alt="{{ car.name }}">
+            {% endif %}
             <h2>{{ car.name }}</h2>
             <p>{{ car.description }}</p>
         </a>
@@ -62,7 +66,6 @@
     <button class="back-to-top" id="backToTop" title="العودة إلى الأعلى">↑</button>
 
     <script src="{% static 'script.js' %}"></script>
-    {% load static %}
 <footer class="social-footer">
     <span>تابعنا على:</span>
     <a href="https://wa.me/+306973594500" target="_blank" title="واتساب">
@@ -78,6 +81,5 @@
         <img src="{% static 'email.png' %}" alt="البريد الإلكتروني" class="social-icon">
     </a>
 </footer>
-
 </body>
 </html>
