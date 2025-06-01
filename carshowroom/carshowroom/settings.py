@@ -118,7 +118,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/pages')]
 
-
+# ...existing code...
+LOGIN_REDIRECT_URL = '/'
+# ...existing code...
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type

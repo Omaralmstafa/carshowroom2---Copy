@@ -9,10 +9,18 @@
 </head>
 <body>
     <header>
-        <button class="theme-toggle" id="themeToggle">🌙 الوضع الليلي</button>
-        <h1>معرض السيارات الفاخرة</h1>
-        <p class="intro">مرحباً بكم في مجموعتنا الحصرية من السيارات الفاخرة. اكتشف المزيج المثالي بين الأداء والفخامة والأناقة.</p>
-    </header>
+    <button class="theme-toggle" id="themeToggle">🌙 الوضع الليلي</button>
+    <h1>معرض السيارات الفاخرة</h1>
+    <p class="intro">مرحباً بكم في مجموعتنا الحصرية من السيارات الفاخرة. اكتشف المزيج المثالي بين الأداء والفخامة والأناقة.</p>
+  <div style="text-align:left; margin-top:1rem;">
+    {% if not request.user.is_authenticated %}
+        <a href="{% url 'login' %}" class="submit-btn">تسجيل الدخول</a>
+    {% else %}
+        <span>مرحباً {{ request.user.username }}</span>
+        <a href="{% url 'login' %}" class="submit-btn">تسجيل الخروج</a>
+    {% endif %}
+</div>
+</header>
 
     {% if request.user.is_staff %}
     <div style="text-align:right; margin: 1rem;">
@@ -69,21 +77,24 @@
     <script src="{% static 'script.js' %}"></script>
 <footer class="social-footer">
     <span>تابعنا على:</span>
-    <a href="https://wa.me/+306973594500" target="_blank" title="واتساب">
-        <img src="{% static 'imeg/whatsapp.png' %}" alt="واتساب" class="social-icon">
+    <a href="https://wa.me/رقم_الواتساب" target="_blank" title="واتساب">
+        <img src="/media/imeg/whatsapp.png" alt="واتساب" class="social-icon">
     </a>
-    <a href="https://www.instagram.com/o.m_a.h" target="_blank" title="انستجرام">
-        <img src="{% static 'imeg/instagram.png' %}" alt="انستجرام" class="social-icon">
+    <a href="https://www.instagram.com/اسم_الانستجرام" target="_blank" title="انستجرام">
+        <img src="/media/imeg/instagram.png" alt="انستجرام" class="social-icon">
     </a>
-    <a href="https://twitter.com/O_m_h12" target="_blank" title="تويتر">
-        <img src="{% static 'imeg/twitter.png' %}" alt="تويتر" class="social-icon">
+    <a href="https://twitter.com/اسم_تويتر" target="_blank" title="تويتر">
+        <img src="/media/imeg/twitter.png" alt="تويتر" class="social-icon">
     </a>
-    <a href="https://facebook.com/yourpage" target="_blank" title="فيسبوك">
-        <img src="{% static 'imeg/facebook.png' %}" alt="فيسبوك" class="social-icon">
+    <a href="https://facebook.com/اسم_فيسبوك" target="_blank" title="فيسبوك">
+        <img src="/media/imeg/facebook.png" alt="فيسبوك" class="social-icon">
     </a>
-    <a href="mailto:almstfyomar123456789@gmail.com" target="_blank" title="البريد الإلكتروني">
-        <img src="{% static 'imeg/email.png' %}" alt="البريد الإلكتروني" class="social-icon">
+    <a href="mailto:الايميل" target="_blank" title="البريد الإلكتروني">
+        <img src="/media/imeg/email.png" alt="البريد الإلكتروني" class="social-icon">
     </a>
 </footer>
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; 2025 معرض السيارات الفاخرة</p>
+    </footer>
 </body>
 </html>

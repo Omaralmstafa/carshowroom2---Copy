@@ -110,3 +110,7 @@ def delete_inquiry(request, inquiry_id):
     if request.method == "POST":
         inquiry.delete()
     return redirect('inquiries_list')
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    template_name = 'pages/login.html'
